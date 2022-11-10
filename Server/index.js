@@ -1,17 +1,34 @@
+//get dependancies
+//npm modules needed are express,cors,mongoose,dotenv
 const express = require('express');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+
+//local variables
 const app = express();
-
-
-mongoose.connect('mongodb+srv://A_RicemusicEspc:A_RicemusicEspc123@cluster0.s9ibflx.mongodb.net/?retryWrites=true&w=majority');
-
+const portNumber =process.env.PORTNUMBER || 5000;
+const mongoDbUri = process.env.mongoDbUri
 const dbConnection = mongoose.connection;
 
+//database connection Mongo DB
+mongoose.connect(mongoDbUri);
 dbConnection.once('open', () => {
     console.log("MongoDB connection sucessful");
 });
 
+//URL Routing configuartion
+// const userRouter = require('./routes/routeuser');
+// const foodRouter = require('./routes/routefood');
 
-app.listen(3000, () =>{
-console.log("Server Starts")
+// app.use('/user',userRouter)
+// app.use('/food', foodRouter)
+
+
+
+//Starts Server
+
+
+app.listen(portNumber, () =>{
+console.log(`Server is running ${portNumber}`)
 });  
