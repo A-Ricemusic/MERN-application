@@ -1,2 +1,2 @@
-# MERNpractice
+# MERN Apllication
 
